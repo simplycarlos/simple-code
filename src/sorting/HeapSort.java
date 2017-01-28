@@ -12,7 +12,7 @@ public class HeapSort {
 	 * @return
 	 */
 	public static int parent(int i){
-		return (int)Math.floor(i/2);
+		return (int)Math.floor((i-1)/2);
 	}
 	
 	/**
@@ -21,7 +21,7 @@ public class HeapSort {
 	 * @return
 	 */
 	public static int left(int i){
-		return 2*i;
+		return 2*i+1;
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class HeapSort {
 	 * @return
 	 */
 	public static int right(int i){
-		return 2*i + 1;
+		return 2*i + 2;
 	}
 
 	// in max-heap the parent node has the max
@@ -44,13 +44,13 @@ public class HeapSort {
 		int r = right(i);
 		
 		int largest=0;
-		//TODO is it length?
-		if( l<heapSize && l==a.length && a[l]>a[r]){
+
+		if( (l<heapSize) && a[l]>a[i]){ 
 			largest=l;
 		} else {
 			largest=i;
 		}
-		if(r<heapSize && r == a.length && a[r]>a[largest]){
+		if((r<heapSize) && a[r]>a[largest]){ 
 			largest=r;
 		}
 		if(largest != i){
@@ -67,7 +67,7 @@ public class HeapSort {
 	 */
 	public static void buildMaxHeap(int[] a){
 		heapSize= a.length;
-		for(int i= (int)Math.floor(a.length/2);i>-1;i--)
+		for(int i= (int)Math.floor(a.length/2)-1;i>-1;i--)
 			maxHeapify(a,i);
 	}
 	
@@ -83,14 +83,14 @@ public class HeapSort {
 		}
 	}
 	public static void main(String[] args) {
-		int[] n = {1,5,4,7,2,4,5,7,9,12,15};
+		int[] n = {1,5,4,7,2,4,5,7,9,5,15};
 		for (int i:n)
-			System.out.print(i);
+			System.out.print(i+" ");
 		
 		System.out.print("\n");
 		heapSort(n);
 		for (int i:n)
-			System.out.print(i);
+			System.out.print(i+" ");
 	}
 
 }
