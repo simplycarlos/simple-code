@@ -7,14 +7,14 @@ public class StackTest {
 		datastructures.Stack s = new Stack();
 		
 		try {
-			System.out.println("Popping:" + s.pop());
+			System.out.println("Popping:" + s.pop(s));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 		}
 		System.out.println("Pushing");
 		s.push(s,1);
 		try {
-			System.out.println("Popping:" + s.pop());
+			System.out.println("Popping:" + s.pop(s));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

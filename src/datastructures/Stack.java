@@ -16,7 +16,7 @@ public class Stack {
 		top=-1;
 	}
 	public boolean empty(Stack s){
-		if(top==0)
+		if(s.top==0)
 			return true;
 		else
 			return false;
@@ -28,12 +28,12 @@ public class Stack {
 		s.top++;
 	}
 	
-	public int pop() throws Exception{
-		if(top<0){
+	public int pop(Stack s) throws Exception{
+		if(s.top<0){
 			throw new Exception("no more data");	
 		} else{
-			int x = stack.get(top);
-			top--;
+			int x = stack.get(s.top);
+			s.top--;
 			return x;
 		}
 	}
