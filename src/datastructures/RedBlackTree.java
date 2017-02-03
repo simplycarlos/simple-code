@@ -81,20 +81,20 @@ public class RedBlackTree {
 					rightRotate(n.parent.parent);
 				}
 			} else{// Same as if but right and left are exchanged
-				RedBlackNode y = n.parent.parent.right;
+				RedBlackNode y = n.parent.parent.left;
 				
 				if(!y.black){
 					n.parent.black = true;
 					y.black = true;
 					n.parent.parent.black = false;
 					n = n.parent.parent;
-				} else if(n == n.parent.right){
+				} else if(n == n.parent.left){
 					n = n.parent;
-					rightRotate(n.parent.parent);
+					rightRotate(n);
 				} else{
 					n.parent.black = true;
 					n.parent.parent.black = false;
-					leftRotate(n);
+					leftRotate(n.parent.parent);
 				}
 			}
 		}
