@@ -38,12 +38,14 @@ public class RedBlackTree {
 			if(t.left!=null){
 				t.left.parent=n;
 			}
+			
+			// setting t's parent
 			t.parent = n.parent;
 			
 			// Setting n's parent's left and right nodes.
 			if(n.parent == null){
 				root = t;
-			} else if(n == n.parent.left){
+			} else if(n == n.parent.left){ // losing n.parent.left???
 				n.parent.left = t;
 			} else{
 				n.parent.right = t;
@@ -64,19 +66,20 @@ public class RedBlackTree {
 			if(n.parent == n.parent.parent.left){
 				RedBlackNode y = n.parent.parent.right;
 				
-				if(!y.black){
-					n.parent.black = true;
+				if(!y.black){ // if uncle red, recolor parent black, grandpa red, uncle black
+					y.parent.left.black = true;
 					y.black = true;
-					n.parent.parent.black = false;
+					y.parent.black = false;
 					n = n.parent.parent;
-				} else if(n == n.parent.right){
+				} else if(n == n.parent.right){ // if forms a triangle and uncle black, left rotate z.p
 					n = n.parent;
 					leftRotate(n);
+				} else {
+					// if uncle black but forms a line, recolor parent black and grandpa black and left right rotate grandpa
+					n.parent.black = true;
+					n.parent.parent.black = false;
+					rightRotate(n.parent.parent);
 				}
-				
-				n.parent.black = true;
-				n.parent.parent.black = false;
-				rightRotate(n);
 			} else{// Same as if but right and left are exchanged
 				RedBlackNode y = n.parent.parent.right;
 				
@@ -87,12 +90,12 @@ public class RedBlackTree {
 					n = n.parent.parent;
 				} else if(n == n.parent.right){
 					n = n.parent;
-					rightRotate(n);
+					rightRotate(n.parent.parent);
+				} else{
+					n.parent.black = true;
+					n.parent.parent.black = false;
+					leftRotate(n);
 				}
-				
-				n.parent.black = true;
-				n.parent.parent.black = false;
-				leftRotate(n);
 			}
 		}
 		root.black = true;
