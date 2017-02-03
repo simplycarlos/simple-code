@@ -57,7 +57,11 @@ public class BinarySearchTree {
 	 * @param parent
 	 */
 	public void inOrderTraversal(BinaryNode parent){
-		
+		if(parent!=null){
+			inOrderTraversal(parent.left);
+			System.out.print(parent.data+ " ");
+			inOrderTraversal(parent.right);
+		}
 	}
 	
 	/**
@@ -65,7 +69,11 @@ public class BinarySearchTree {
 	 * @param parent
 	 */
 	public void postOrderTraversal(BinaryNode parent){
-		
+		if(parent!=null){
+			inOrderTraversal(parent.left);
+			inOrderTraversal(parent.right);
+			System.out.print(parent.data+ " ");
+		}
 	}
 	
 	/**
@@ -73,7 +81,11 @@ public class BinarySearchTree {
 	 * @param parent
 	 */
 	public void preOrderTraversal(BinaryNode parent){
-		
+		if(parent!=null){
+			System.out.print(parent.data+ " ");
+			inOrderTraversal(parent.left);
+			inOrderTraversal(parent.right);
+		}
 	}
 	
 	/**
